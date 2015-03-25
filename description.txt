@@ -1,0 +1,3 @@
+Title: Name Archiver
+Author: SadBlobfish
+Archives player's BL_ID's, their corresponding names, and the most recent date in which you've encountered them.
