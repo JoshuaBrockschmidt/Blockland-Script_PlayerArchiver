@@ -19,7 +19,7 @@ function PLYRARCH_addPlayer(%bl_id, %name)
 		return false;
 	}
 	
-	%file.writeLine(%bl_id SPC "\"" @ %name @ "\"");
+	%file.writeLine(%bl_id SPC %name);
 	
 	%file.close();
 	%file.delete();
