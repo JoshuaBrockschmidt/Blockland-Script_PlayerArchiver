@@ -33,7 +33,7 @@ function PLYRARCH_sortData()
 	
 	if (isFile($PLYRARCH::archiveFile))
 	{
-		// Get data from existing sorted archive data
+		// Index sorted player data
 		if(!%file.openForRead($PLYRARCH::archiveFile))
 		{
 			echo("'" @ $PLYRARCH::archiveFile @ "' could not be opened for reading");
@@ -72,7 +72,7 @@ function PLYRARCH_sortData()
 		%file.close();
 	}
 	
-	// Get data from raw archive data
+	// Index raw player data
 	if(!%file.openForRead($PLYRARCH::rawArchiveFile))
 	{
 		echo("'" @ $PLYRARCH::rawArchiveFile @ "' could not be opened for reading");
@@ -93,7 +93,6 @@ function PLYRARCH_sortData()
 		// If data for this player already exists
 		if (%playerData[%bl_id])
 		{
-			echo("Updating existing player data...");
 			%isNewName = true;
 			for (%i = 0; %playerData[%bl_id].names[%i] !$= ""; %i++)
 			{
@@ -101,7 +100,7 @@ function PLYRARCH_sortData()
 				{
 					%isNewName = false;
 					break;
-				}				
+				}
 			}
 			
 			if (%isNewName)
@@ -113,7 +112,6 @@ function PLYRARCH_sortData()
 		// If data for this player doesn't exist
 		else
 		{
-			echo("Creating new player data...");
 			%playerData[%bl_id] = new ScriptObject() {
 				names[0] = %name;
 				occured = 1;
@@ -126,6 +124,17 @@ function PLYRARCH_sortData()
 		}
 	}
 	
+	%file.close();
+	
+	// Delete raw data file
+	// Opening it for writing will overwrite it
+	echo("Clearing raw player data...");
+	if(!%file.openForWrite($PLYRARCH::rawArchiveFile))
+	{
+		echo("'" @ $PLYRARCH::archiveFile @ "' could not be opened for writing");
+		%file.delete();
+		return false;
+	}
 	%file.close();
 	
 	// Open file to write data
@@ -159,7 +168,7 @@ function PLYRARCH_sortData()
 		%playerData[%bl_id].delete();
 	}
 	
-	echo("Player archive sorted");
+	echo("Player archive sorted:" SPC $PLYRARCH::archiveFile);
 	
 	%file.close();
 	%file.delete();
