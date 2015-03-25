@@ -173,3 +173,5 @@ function PLYRARCH_sortData()
 	%file.close();
 	%file.delete();
 }
+
+PLYRARCH_sortData();
