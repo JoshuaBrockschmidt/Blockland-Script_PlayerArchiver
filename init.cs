@@ -7,12 +7,12 @@ if (!isFile($PLYRARCH::rawArchiveFile)) {
 	// Attempt to create file
 	if (%file.openForWrite($PLYRARCH::rawArchiveFile))
 	{
-		echo("'" @ $PLYRARCH::archiveFile @ "' created successfully");
+		echo("'" @ $PLYRARCH::rawArchiveFile @ "' created successfully");
 		%file.close();
 	}
 	else
 	{
-		echo("'" @ $PLYRARCH::archiveFile @ "' could not be created");
+		echo("'" @ $PLYRARCH::rawArchiveFile @ "' could not be created");
 		%successful = false;
 	}
 	%file.delete();
@@ -21,7 +21,7 @@ if (!isFile($PLYRARCH::rawArchiveFile)) {
 }
 else
 {
-	echo("'" @ $PLYRARCH::archiveFile @ "' already created");
+	echo("'" @ $PLYRARCH::rawArchiveFile @ "' already created");
 	
 	return true;
 }
