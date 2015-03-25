@@ -16,6 +16,7 @@ function PLYRARCH_addPlayer(%bl_id, %name)
 	if (!%file.openForAppend($PLYRARCH::rawArchiveFile))
 	{
 		echo($PLYRARCH::archiveFile SPC "could not be opened for writing");
+		%file.delete();
 		return false;
 	}
 	

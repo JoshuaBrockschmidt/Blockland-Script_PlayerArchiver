@@ -8,14 +8,13 @@ if (!isFile($PLYRARCH::rawArchiveFile)) {
 	if (%file.openForWrite($PLYRARCH::rawArchiveFile))
 	{
 		echo("'" @ $PLYRARCH::archiveFile @ "' created successfully");
+		%file.close();
 	}
 	else
 	{
 		echo("'" @ $PLYRARCH::archiveFile @ "' could not be created");
 		%successful = false;
 	}
-	
-	%file.close();
 	%file.delete();
 	
 	return %successful;
